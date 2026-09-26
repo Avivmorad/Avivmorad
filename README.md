@@ -1,14 +1,15 @@
 # Aviv Morad
+Seeking intern, student and entry-level opportunities in Generative AI and automation workflow development. Open to remote work.
 
 ### Computer Science student · Generative AI & automation
 
 I build web applications that turn AI capabilities into useful workflows. My projects
 cover technical interview practice, Gmail triage and real-time multiplayer games.
 I also have experience with data migration, Python/Pandas automation and data-quality
-checks at Phoenix ESOP.
+checks.
 
 [LinkedIn](https://www.linkedin.com/in/avivmorad/) ·
-[Email](mailto:avivnurs327@gmail.com)
+
 
 ## Selected projects
 
@@ -31,10 +32,4 @@ checks at Phoenix ESOP.
 **Data & automation:** Python, Pandas, Excel, SQL, Supabase  
 **Verification:** Vitest, Playwright, API tests, GitHub Actions
 
-## Background
 
-Computer Science student at Afeka Tel Aviv Academic College of Engineering, expected graduation 2028.
-Previously worked on data preparation, CSV migration, automated validation and
-post-upload QA at Phoenix ESOP.
-
-Seeking intern, student and entry-level opportunities in Generative AI and automation workflow development. Open to remote work.
