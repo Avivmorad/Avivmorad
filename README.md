@@ -20,7 +20,7 @@ Computer Science student at Afeka — The Academic College of Engineering in Tel
 MailPriority and Agent-Biz are private repositories. MailPriority is a demo; Gmail OAuth approval is still in progress.
 
 ### Live demos
-
+- [MailPriority(demo)](https://mail-priority.vercel.app/) - Gmail triage that organizes threads into actionable views
 - [InterviewPilot AI](https://interviewpilot-ai-bice.vercel.app) — role-based interview practice with structured feedback.
 - [Banger or Bot](https://banger-or-bot.vercel.app) — host a room or join friends.
 
