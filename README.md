@@ -6,7 +6,7 @@ Ramat HaSharon, Israel · Open to student and junior software roles in Israel (o
 
 Computer Science student at Afeka — The Academic College of Engineering in Tel Aviv. I build full-stack applications, applied-AI workflows, and automation systems with TypeScript, React, Node.js, Python, PostgreSQL, and LLM APIs. I also have professional experience validating and migrating large employee-equity datasets with Python/Pandas and manual system QA.
 
-[LinkedIn](https://www.linkedin.com/in/avivmorad/) · [Email](mailto:avivnurs327@gmail.com)
+[LinkedIn](https://www.linkedin.com/in/avivmorad/)
 
 ## Selected projects
 
