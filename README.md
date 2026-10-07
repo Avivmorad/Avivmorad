@@ -12,7 +12,7 @@ Computer Science student at Afeka — The Academic College of Engineering in Tel
 
 | Project | What it does | Engineering focus |
 | --- | --- | --- |
-| **MailPriority** (demo) | Gmail triage that organizes threads into actionable views | Next.js, TypeScript, Gmail API, Supabase/PostgreSQL, structured LLM outputs, OAuth, Row Level Security |
+| [MailPriority(demo)](https://mail-priority.vercel.app/)  | Gmail triage that organizes threads into actionable views | Next.js, TypeScript, Gmail API, Supabase/PostgreSQL, structured LLM outputs, OAuth, Row Level Security |
 | [InterviewPilot AI](https://github.com/Avivmorad/InterviewPilot-AI) | Technical interview practice with structured feedback and learning reports | React, TypeScript, Express, Gemini/Groq fallback, Zod validation, evaluations |
 | [Banger or Bot](https://github.com/Avivmorad/Banger_or_Bot) | Real-time multiplayer music game for up to eight players | Next.js, TypeScript, Supabase Realtime, server-authoritative scoring, Vitest, Playwright |
 | **Agent-Biz** | Six-agent Python workflow for digital-product research, creation, and Etsy operations | Python, GitHub Actions, GitHub Issues, role-based orchestration, human approval gates |
