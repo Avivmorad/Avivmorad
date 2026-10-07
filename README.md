@@ -1,35 +1,46 @@
 # Aviv Morad
-Seeking intern, student and entry-level opportunities in Generative AI and automation workflow development. Open to remote work.
 
-### Computer Science student · Generative AI & automation
+**Software Engineering | Applied AI & Automation | Computer Science Student**
 
-I build web applications that turn AI capabilities into useful workflows. My projects
-cover technical interview practice, Gmail triage and real-time multiplayer games.
-I also have experience with data migration, Python/Pandas automation and data-quality
-checks.
+Ramat HaSharon, Israel · Open to student and junior software roles in Israel (on-site, hybrid, or remote; part-time or full-time)
 
-[LinkedIn](https://www.linkedin.com/in/avivmorad/) ·
+Computer Science student at Afeka — The Academic College of Engineering in Tel Aviv. I build full-stack applications, applied-AI workflows, and automation systems with TypeScript, React, Node.js, Python, PostgreSQL, and LLM APIs. I also have professional experience validating and migrating large employee-equity datasets with Python/Pandas and manual system QA.
 
+[LinkedIn](https://www.linkedin.com/in/avivmorad/) · [Email](mailto:avivnurs327@gmail.com)
 
 ## Selected projects
 
 | Project | What it does | Engineering focus |
 | --- | --- | --- |
-| [InterviewPilot AI](https://github.com/Avivmorad/InterviewPilot-AI) | Technical interview practice with structured AI feedback and learning reports | React, TypeScript, Express, Gemini/Groq fallback, output validation and evaluations |
-| [MailPilot](https://github.com/Avivmorad/MailPilot) | Gmail triage that surfaces next actions, waiting items and summaries | Next.js, Gemini, Gmail API, incremental sync, resumable scans and encrypted tokens |
-| [Banger or Bot](https://github.com/Avivmorad/Banger_or_Bot) | A multiplayer music game: guess whether each clip is human-made or AI-generated | Next.js, TypeScript, Supabase Realtime, server-authoritative scoring and private track answers |
+| **MailPriority** (demo) | Gmail triage that organizes threads into actionable views | Next.js, TypeScript, Gmail API, Supabase/PostgreSQL, structured LLM outputs, OAuth, Row Level Security |
+| [InterviewPilot AI](https://github.com/Avivmorad/InterviewPilot-AI) | Technical interview practice with structured feedback and learning reports | React, TypeScript, Express, Gemini/Groq fallback, Zod validation, evaluations |
+| [Banger or Bot](https://github.com/Avivmorad/Banger_or_Bot) | Real-time multiplayer music game for up to eight players | Next.js, TypeScript, Supabase Realtime, server-authoritative scoring, Vitest, Playwright |
+| **Agent-Biz** | Six-agent Python workflow for digital-product research, creation, and Etsy operations | Python, GitHub Actions, GitHub Issues, role-based orchestration, human approval gates |
 
-### Explore the demos
+MailPriority and Agent-Biz are private repositories. MailPriority is a demo; Gmail OAuth approval is still in progress.
 
-- [InterviewPilot AI](https://interviewpilot-ai-bice.vercel.app) — interview setup and practice.
-- [MailPilot](https://mail-pilot-avivmoradteam.vercel.app) — public landing page; inbox features require sign-in and a Gmail connection.
+### Live demos
+
+- [InterviewPilot AI](https://interviewpilot-ai-bice.vercel.app) — role-based interview practice with structured feedback.
 - [Banger or Bot](https://banger-or-bot.vercel.app) — host a room or join friends.
 
-## Tools I use
+## Relevant experience
 
-**Applications:** TypeScript, JavaScript, React, Next.js, Node.js, Express  
-**AI:** Gemini, Groq, structured outputs, prompt design, evaluation fixtures  
-**Data & automation:** Python, Pandas, Excel, SQL, Supabase  
-**Verification:** Vitest, Playwright, API tests, GitHub Actions
+**Project Coordinator — Data Migration, Automation & QA** · ESOP Management & Trust Services Ltd. / Phoenix Investments Group · Sep 2025–Jun 2026 (part-time)
 
+- Built reusable Python/Pandas and Excel validation workflows for migrating more than 100,000 employee and equity records across dozens of files and migration rounds.
+- Automated checks for completeness, duplicates, formats, cross-file consistency, and business rules; reduced a large-scale manual validation effort from months to days.
+- Verified migrated records in the internal system and reported reproducible defects with reproduction steps.
 
+## Skills
+
+**Languages:** TypeScript, JavaScript, Python, SQL  
+**Web & APIs:** React, Next.js, Node.js, Express, REST APIs, Gmail API  
+**Data & platforms:** PostgreSQL, Supabase, Pandas, Excel  
+**Applied AI:** LLM API integration, structured outputs, Zod validation, provider fallback, LLM evaluation  
+**Testing & delivery:** Vitest, Playwright, GitHub Actions, Vercel, Render
+
+## Education
+
+**Afeka — The Academic College of Engineering in Tel Aviv**  
+B.Sc. in Computer Science · Nov 2024–Oct 2028 (expected)
