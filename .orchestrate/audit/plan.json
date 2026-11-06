@@ -1,0 +1,110 @@
+{
+  "$schema": "/home/ubuntu/.cursor/plugins/cache/cursor-plugins/85192052/2776ddd2355d6d6c8747d3964600f28daf62f049/skills/orchestrate/schemas/plan.schema.json",
+  "goal": "audit: Perform a comprehensive audit and mapping of the entire AI coding environment in this directory.",
+  "summary": "Map the Avivmorad repo plus cloud-agent Cursor stack into a committed environment atlas",
+  "rootSlug": "audit",
+  "baseBranch": "avivmoradbot/audit-environment-map-d875",
+  "repoUrl": "https://github.com/Avivmorad/Avivmorad",
+  "selfAgentId": "bc-bbc9707f-c7df-4115-9299-a4a4ef77d875",
+  "dispatcher": {
+    "firstName": "Aviv"
+  },
+  "acceptanceCriteria": [
+    "audit/ENVIRONMENT_MAP.md exists and links every section with a one-screen executive summary",
+    "audit/reference/ holds machine-readable inventories workers can reuse without rescanning",
+    "Each major layer (repository, Cursor config, cloud runtime, orchestration substrate) has a dedicated section file under audit/sections/",
+    "Architecture diagram in audit/ARCHITECTURE.md shows how repo, cloud VM, plugins, MCP, and orchestrate loop connect"
+  ],
+  "syncStateToGit": true,
+  "tasks": [
+    {
+      "name": "bootstrap-reference-pack",
+      "type": "worker",
+      "scopedGoal": "Bootstrap reference material for the audit tree. Scan the workspace at /agent/repos/Avivmorad and the cloud-agent VM (home ~/.cursor, /cursor/stores, installed plugins, available MCP namespaces, orchestrate CLI location). Commit under audit/reference/: (1) repo-tree.txt from `find` on the repo excluding .git, (2) cursor-plugins-inventory.md listing every installed plugin under ~/.cursor/plugins/cache with version from plugin.json when present, (3) skills-inventory.md covering ~/.cursor/skills-cursor, /cursor/stores/user/skills, and workspace rules from the agent context, (4) mcp-namespaces.json listing dynamic tool namespaces visible to agents (Github, Context7, cursor-cloud, cursor-subscriptions, cursor) with tool counts if you can enumerate via GetDynamicTools catalog, (5) cloud-runtime-snapshot.json with fields from cursor-cloud run-info and environment-info (bcId, repoUrl, model, environment ids, build id, egress policy). Do not write audit/sections or ENVIRONMENT_MAP yet. Downstream tasks must read audit/reference/ instead of repeating full discovery.",
+      "pathsAllowed": ["audit/reference/**"],
+      "acceptance": [
+        "audit/reference/ contains at least five artifact files listed in the scoped goal",
+        "repo-tree.txt reflects the current repository file list",
+        "cloud-runtime-snapshot.json includes bcId and environment build metadata"
+      ]
+    },
+    {
+      "name": "map-repository-surface",
+      "type": "worker",
+      "dependsOn": ["bootstrap-reference-pack"],
+      "scopedGoal": "Using audit/reference/repo-tree.txt and README.md, write audit/sections/01-repository.md (repo purpose, branch/remotes, what is in-tree vs external linked projects from README) and audit/sections/02-linked-projects.md (table of named GitHub/Vercel projects, visibility, and stack hints from README). Note explicitly that the in-repo codebase is profile-only today.",
+      "pathsAllowed": ["audit/sections/01-repository.md", "audit/sections/02-linked-projects.md"],
+      "acceptance": [
+        "01-repository.md documents git remote and branch strategy",
+        "02-linked-projects.md lists MailPriority, InterviewPilot, Banger or Bot, Agent-Biz with links"
+      ]
+    },
+    {
+      "name": "map-cursor-stack",
+      "type": "worker",
+      "dependsOn": ["bootstrap-reference-pack"],
+      "scopedGoal": "Using audit/reference/cursor-plugins-inventory.md and skills-inventory.md, write audit/sections/03-cursor-plugins-and-skills.md covering installed marketplace plugins (orchestrate, cursor-team-kit), skill locations, workspace rules (no-inline-imports, typescript-exhaustive-switch), user skill store entries, and how agents discover skills. Include paths on this VM.",
+      "pathsAllowed": ["audit/sections/03-cursor-plugins-and-skills.md"],
+      "acceptance": [
+        "Documents orchestrate plugin path and cursor-team-kit skills",
+        "Lists user skills under /cursor/stores/user/skills"
+      ]
+    },
+    {
+      "name": "map-cloud-runtime",
+      "type": "worker",
+      "dependsOn": ["bootstrap-reference-pack"],
+      "scopedGoal": "Using audit/reference/cloud-runtime-snapshot.json and mcp-namespaces.json, write audit/sections/04-cloud-agent-runtime.md (VM layers, environment build vs repo bootstrap, available MCP/subagent types from agent context) and audit/sections/05-tooling-and-cli.md (shell, node, bun for orchestrate, git, tmux policy). Document CURSOR_API_KEY/SLACK presence as boolean only, never values.",
+      "pathsAllowed": [
+        "audit/sections/04-cloud-agent-runtime.md",
+        "audit/sections/05-tooling-and-cli.md"
+      ],
+      "acceptance": [
+        "04-cloud-agent-runtime.md references environment build id from snapshot",
+        "05-tooling-and-cli.md documents orchestrate cli.ts path and bun requirement"
+      ]
+    },
+    {
+      "name": "map-orchestrate-substrate",
+      "type": "worker",
+      "dependsOn": ["bootstrap-reference-pack"],
+      "scopedGoal": "Write audit/sections/06-orchestrate-substrate.md explaining this run's .orchestrate/audit workspace (plan.json, state.json, handoffs/), branch naming orch/audit/*, planner vs worker roles, and how to rerun `bun cli.ts run --root .orchestrate/audit`. Read orchestrate SKILL.md at the cached plugin path only for accuracy; do not modify orchestrate sources.",
+      "pathsAllowed": ["audit/sections/06-orchestrate-substrate.md"],
+      "acceptance": [
+        "Describes rootSlug audit and selfAgentId lineage field",
+        "Includes the foreground run loop hygiene (exit 100 restart, exit 1 failure handoffs)"
+      ]
+    },
+    {
+      "name": "synthesize-master-map",
+      "type": "worker",
+      "dependsOn": [
+        "map-repository-surface",
+        "map-cursor-stack",
+        "map-cloud-runtime",
+        "map-orchestrate-substrate"
+      ],
+      "scopedGoal": "Produce audit/README.md (how to read the atlas), audit/ENVIRONMENT_MAP.md (executive summary + deep links to every section), and audit/ARCHITECTURE.md with a mermaid diagram of repo ↔ cloud agent ↔ plugins/MCP ↔ orchestrate loop. Fold in upstream section content; do not duplicate full inventories (link to audit/reference/ instead).",
+      "pathsAllowed": [
+        "audit/README.md",
+        "audit/ENVIRONMENT_MAP.md",
+        "audit/ARCHITECTURE.md"
+      ],
+      "acceptance": [
+        "ENVIRONMENT_MAP.md links all six section files",
+        "ARCHITECTURE.md contains at least one mermaid diagram"
+      ]
+    },
+    {
+      "name": "verify-environment-map",
+      "type": "verifier",
+      "verifies": "synthesize-master-map",
+      "scopedGoal": "Verify the environment atlas meets planner acceptanceCriteria: required files exist, links resolve, reference pack is cited, and no secret values appear in markdown. Run test -f checks and rg for cursor_ or xoxb- patterns in audit/.",
+      "acceptance": [
+        "All acceptanceCriteria files exist",
+        "No credential-like strings in audit/"
+      ],
+      "verify": "## Automated\n- `test -f audit/ENVIRONMENT_MAP.md && test -f audit/ARCHITECTURE.md && test -f audit/reference/cloud-runtime-snapshot.json`\n- `rg -n 'cursor_[A-Za-z0-9]|xoxb-' audit/ && exit 1 || exit 0`\n\n## Manual\n- Open ENVIRONMENT_MAP.md and confirm each section link targets an existing file\n- Confirm ARCHITECTURE.md mermaid renders logically"
+    }
+  ]
+}
