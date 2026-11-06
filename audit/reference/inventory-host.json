@@ -1,0 +1,8 @@
+{
+  "capturedAt": "2026-11-06T07:22:00Z",
+  "kernel": "Linux 6.12.113+ x86_64",
+  "hostname": "cursor",
+  "user": "ubuntu",
+  "cwd": "/workspace",
+  "notes": "Cloud agent VM; default image fallback (no finished environment build for linked environment)."
+}
