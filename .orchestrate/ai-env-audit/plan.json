@@ -1,0 +1,83 @@
+{
+  "$schema": "/tmp/plugins/orchestrate/skills/orchestrate/schemas/plan.schema.json",
+  "goal": "ai-env-audit: comprehensive read-only audit of the AI coding environment",
+  "summary": "read-only audit of this cloud agent coding environment via orchestrate smoke run",
+  "dispatcher": {
+    "firstName": "Aviv"
+  },
+  "rootSlug": "ai-env-audit",
+  "baseBranch": "avivmoradbot/ai-env-audit-orchestrate-ed6b",
+  "repoUrl": "https://github.com/Avivmorad/Avivmorad",
+  "selfAgentId": "bc-f70c487a-27a4-4d4b-b732-0d58f9b5ed6b",
+  "syncStateToGit": true,
+  "acceptanceCriteria": [
+    "Final report at audit/AI-ENV-AUDIT-REPORT.md covers runtime, toolchain, agent surface (skills/MCP/subagents), secrets/egress policy, and orchestrate substrate status",
+    "All audit work is read-only; no repo source changes outside audit/ and .orchestrate/ai-env-audit/",
+    "Each audit slice cites evidence paths or command output in handoffs"
+  ],
+  "tasks": [
+    {
+      "name": "bootstrap-pack",
+      "type": "worker",
+      "model": "composer-2.5-fast",
+      "scopedGoal": "Read-only: turn `audit/reference/planner-bootstrap.md` into structured reference files under `audit/reference/` (`inventory-host.json`, `inventory-toolchain.json`, `inventory-agent-store.json`) for downstream workers. Do not run destructive commands. Note in handoff if ai-env-audit SKILL.md was missing and which goal text you used.",
+      "pathsAllowed": ["audit/reference/**"],
+      "pathsForbidden": [".orchestrate/**", "README.md"],
+      "acceptance": [
+        "Three JSON inventory files exist under audit/reference/",
+        "Handoff lists any gaps or missing skill provisioning"
+      ]
+    },
+    {
+      "name": "audit-runtime-egress",
+      "type": "worker",
+      "dependsOn": ["bootstrap-pack"],
+      "model": "composer-2.5-fast",
+      "scopedGoal": "Read-only audit of host runtime and cloud egress: OS/kernel, user, key paths (/workspace, /cursor/stores, /exec-daemon), environment build resolution, and egress policy. Append findings to `audit/sections/runtime-egress.md` with evidence (commands run, file paths). Use cursor-cloud environment-info if available. No secret values in output.",
+      "pathsAllowed": ["audit/sections/**", "audit/reference/**"],
+      "pathsForbidden": [".orchestrate/**/plan.json", "README.md"],
+      "acceptance": [
+        "audit/sections/runtime-egress.md exists with dated evidence",
+        "Documents defaultImageFallback / build resolution when present"
+      ]
+    },
+    {
+      "name": "audit-agent-surface",
+      "type": "worker",
+      "dependsOn": ["bootstrap-pack"],
+      "model": "composer-2.5-fast",
+      "scopedGoal": "Read-only audit of the AI agent surface available in this VM: mounted user skills under /cursor/stores/user/skills, dynamic MCP namespaces visible to agents, subagent types, and orchestrate substrate path (/tmp/plugins/orchestrate/...). Write `audit/sections/agent-surface.md`. Do not exfiltrate secret values.",
+      "pathsAllowed": ["audit/sections/**", "audit/reference/**"],
+      "pathsForbidden": [".orchestrate/**/plan.json", "README.md"],
+      "acceptance": [
+        "audit/sections/agent-surface.md lists skills, MCP namespaces, and orchestrate CLI location",
+        "Calls out missing ai-env-audit skill mount if still absent"
+      ]
+    },
+    {
+      "name": "synthesize-report",
+      "type": "worker",
+      "dependsOn": ["audit-runtime-egress", "audit-agent-surface"],
+      "model": "composer-2.5-fast",
+      "scopedGoal": "Merge all material under audit/reference/ and audit/sections/ into a single human-readable `audit/AI-ENV-AUDIT-REPORT.md` with executive summary, findings by category, and explicit limitations (missing SKILL.md, missing CURSOR_API_KEY for orchestrate spawn). Read-only synthesis only.",
+      "pathsAllowed": ["audit/**"],
+      "pathsForbidden": [".orchestrate/**", "README.md"],
+      "acceptance": [
+        "audit/AI-ENV-AUDIT-REPORT.md exists with summary + categorized findings",
+        "Limitations section mentions skill mount and API key if applicable"
+      ]
+    },
+    {
+      "name": "verify-audit-report",
+      "type": "verifier",
+      "verifies": "synthesize-report",
+      "model": "composer-2.5-fast",
+      "scopedGoal": "Verify synthesize-report acceptance: report exists, covers runtime+agent surface, states read-only scope, and documents known provisioning gaps. Run no write commands beyond verifier artifacts under verify/ if needed.",
+      "pathsAllowed": ["audit/**", "verify/**"],
+      "acceptance": [
+        "Verification section maps each synthesize-report acceptance criterion to met/not met with evidence"
+      ],
+      "verify": "## Automated\n- Confirm `audit/AI-ENV-AUDIT-REPORT.md` exists and is non-empty.\n\n## Manual\n- Skim report for runtime, agent surface, and limitations sections.\n- Confirm no secret values appear in report text."
+    }
+  ]
+}
