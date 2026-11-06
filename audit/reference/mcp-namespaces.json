@@ -1,0 +1,25 @@
+{
+  "capturedAt": "2026-11-06T07:20:00Z",
+  "namespaces": [
+    { "name": "Context7", "status": "ready", "toolCount": 2 },
+    { "name": "cursor", "status": "ready", "toolCount": 13 },
+    { "name": "cursor-cloud", "status": "ready", "toolCount": 18 },
+    { "name": "cursor-subscriptions", "status": "ready", "toolCount": 8 },
+    { "name": "Github", "status": "ready", "toolCount": 48 }
+  ],
+  "firstPartyCursorTools": [
+    "Await",
+    "CreateGoal",
+    "Delete",
+    "EditNotebook",
+    "FetchMcpResource",
+    "GenerateImage",
+    "ReadLints",
+    "SetActiveBranch",
+    "Task",
+    "TodoWrite",
+    "UpdateGoal",
+    "WebFetch",
+    "WebSearch"
+  ]
+}

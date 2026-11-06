@@ -1,0 +1,17 @@
+/agent/repos/Avivmorad/audit/ARCHITECTURE.md
+/agent/repos/Avivmorad/audit/ENVIRONMENT_MAP.md
+/agent/repos/Avivmorad/audit/README.md
+/agent/repos/Avivmorad/audit/reference/cloud-runtime-snapshot.json
+/agent/repos/Avivmorad/audit/reference/cursor-plugins-inventory.md
+/agent/repos/Avivmorad/audit/reference/mcp-namespaces.json
+/agent/repos/Avivmorad/audit/reference/repo-tree.txt
+/agent/repos/Avivmorad/audit/reference/skills-inventory.md
+/agent/repos/Avivmorad/audit/sections/01-repository.md
+/agent/repos/Avivmorad/audit/sections/02-linked-projects.md
+/agent/repos/Avivmorad/audit/sections/03-cursor-plugins-and-skills.md
+/agent/repos/Avivmorad/audit/sections/04-cloud-agent-runtime.md
+/agent/repos/Avivmorad/audit/sections/05-tooling-and-cli.md
+/agent/repos/Avivmorad/audit/sections/06-orchestrate-substrate.md
+/agent/repos/Avivmorad/.orchestrate/audit/attention.log
+/agent/repos/Avivmorad/.orchestrate/audit/plan.json
+/agent/repos/Avivmorad/README.md

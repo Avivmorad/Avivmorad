@@ -1,0 +1,1 @@
+[2026-11-06T07:21:00.000Z] root planner: bun cli.ts run --root .orchestrate/audit failed exit 2 — CURSOR_API_KEY required; see cursor-sdk/references/auth.md. Worker spawns not started. Atlas committed under audit/ on branch avivmoradbot/audit-environment-map-d875 to satisfy audit goal.

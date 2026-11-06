@@ -1,0 +1,34 @@
+{
+  "capturedAt": "2026-11-06T07:20:00Z",
+  "workspacePath": "/agent/repos/Avivmorad",
+  "run": {
+    "bcId": "bc-bbc9707f-c7df-4115-9299-a4a4ef77d875",
+    "name": "audit-root",
+    "repoUrl": "github.com/Avivmorad/Avivmorad",
+    "status": "RUNNING",
+    "source": "sdk",
+    "originalModelName": "composer-2.5-fast",
+    "url": "https://cursor.com/agents/bc-bbc9707f-c7df-4115-9299-a4a4ef77d875"
+  },
+  "environment": {
+    "environmentPublicId": "ac040046-d9b1-11f1-ba91-f63b1661ac50",
+    "environmentVersionPublicId": "ac13b784-d9b1-11f1-ba91-f63b1661ac50",
+    "source": "Personal",
+    "repos": ["github.com/Avivmorad/Avivmorad"],
+    "environmentJsonExposed": false
+  },
+  "build": {
+    "buildId": "bld-20261106-5fc1aebd-710a-4348-920d-6717b5ae74af",
+    "snapshotId": "bld-20261106-5fc1aebd-710a-4348-920d-6717b5ae74af",
+    "gitSetup": "reuse",
+    "warmFork": "lazy_load"
+  },
+  "egress": {
+    "restricted": false
+  },
+  "secretsInShell": {
+    "CURSOR_API_KEY": false,
+    "SLACK_BOT_TOKEN": false
+  },
+  "note": "Orchestrate cli.ts run requires CURSOR_API_KEY in the agent shell; not present during this audit run."
+}
